@@ -8,7 +8,7 @@ import Spinner from "./Spinner";
 import { Switch } from "~/components/ui/switch";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import Cookie from "js-cookie";
-import { useBooleanValue, useUserDataStore } from "~/APIs/store";
+import { useBooleanValue, useLanguageStore, useUserDataStore } from "~/APIs/store";
 import { Text } from "./Text";
 import { FaTachometerAlt } from "react-icons/fa";
 import { FaRegUser } from "react-icons/fa";
@@ -81,7 +81,7 @@ const NavBarLink = ({
         }}
         className={`mt-4 flex items-center gap-x-3.5 px-2.5 py-2 font-sans font-semibold ${
           small ? "w-[40px]" : ""
-        } text-md text-navLinks group bg-bgPrimary hover:bg-bgThird hover:text-primary2`}
+        } text-md group bg-bgPrimary text-navLinks hover:bg-bgThird hover:text-primary2`}
         href={href}
       >
         <Icon
@@ -122,6 +122,8 @@ const NavBar = () => {
   const path = usePathname();
   // console.log("👾 ~ NavBar ~ path:", path);
   const toggleNav = useBooleanValue((state: any) => state.toggle);
+  const language = useLanguageStore((state) => state.language);
+
   const [dropdownOpen, setDropdownOpen] = useState<string | null>(null);
 
   const [profile, setProfile] = useState(false);
@@ -200,7 +202,7 @@ const NavBar = () => {
                 path === "/active-users"
                   ? "text-primary2"
                   : "text-textSecondary"
-              } ${small ? "absolute left-12 top-8 z-[2002] w-[200px] border-t border-r border-l border-borderPrimary/50 rounded-t-md" : ""} bg-bgPrimary block px-4 py-2 font-semibold hover:bg-bgSecondary hover:text-primary2`}
+              } ${small ? "absolute left-12 top-8 z-[2002] w-[200px] rounded-t-md border-l border-r border-t border-borderPrimary/50" : ""} block bg-bgPrimary px-4 py-2 font-semibold hover:bg-bgSecondary hover:text-primary2`}
             >
               Active User
             </Link>
@@ -212,7 +214,7 @@ const NavBar = () => {
                 path === "/registration-requests"
                   ? "text-primary2"
                   : "text-textSecondary"
-              } ${small ? "absolute left-12 top-16 z-[2002] w-[200px] border-b border-r border-l border-borderPrimary/50 rounded-b-md" : ""} bg-bgPrimary block px-4 py-2 font-semibold hover:bg-bgSecondary hover:text-primary2`}
+              } ${small ? "absolute left-12 top-16 z-[2002] w-[200px] rounded-b-md border-b border-l border-r border-borderPrimary/50" : ""} block bg-bgPrimary px-4 py-2 font-semibold hover:bg-bgSecondary hover:text-primary2`}
             >
               Last Registration Request
             </Link>
@@ -245,7 +247,9 @@ const NavBar = () => {
 
   return (
     <>
-      <header>
+      <header 
+      dir={language === "ar" ? "rtl" : "ltr"}
+      >
         <div>
           <header
             className={`sticky inset-x-0 top-0 z-[48] flex w-full flex-wrap bg-bgPrimary py-2.5 text-sm sm:flex-nowrap sm:justify-start sm:py-4 lg:ps-64`}
@@ -427,7 +431,6 @@ const NavBar = () => {
           </div>
           {isOpen && (
             <div
-              dir={"ltr"}
               id="application-sidebar"
               className={`hs-overlay hs-overlay-open:translate-x-0 transform transition-all duration-300 [--auto-close:lg] ${
                 small ? "w-[90px]" : "w-[300px]"
