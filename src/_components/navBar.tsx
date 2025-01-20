@@ -8,9 +8,13 @@ import Spinner from "./Spinner";
 import { Switch } from "~/components/ui/switch";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import Cookie from "js-cookie";
-import { useBooleanValue, useLanguageStore, useUserDataStore } from "~/APIs/store";
+import {
+  useBooleanValue,
+  useLanguageStore,
+  useUserDataStore,
+} from "~/APIs/store";
 import { Text } from "./Text";
-import { FaTachometerAlt } from "react-icons/fa";
+import { FaSearch, FaTachometerAlt } from "react-icons/fa";
 import { FaRegUser } from "react-icons/fa";
 import { PiChatCircleBold } from "react-icons/pi";
 import { TbReportAnalytics } from "react-icons/tb";
@@ -18,6 +22,77 @@ import { FiSettings } from "react-icons/fi";
 import { IoNotificationsOutline } from "react-icons/io5";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import LanguageSwitcher from "./LanguageSwitcher";
+
+const translations = {
+  en: {
+    opream: "OPream",
+    onWay: "On Way",
+    userName: "Ahmed Mohamed",
+    userRole: "Admin",
+    dashboard: "Dashboard",
+    users: "Users",
+    chats: "Chats",
+    reports: "Reports",
+    settings: "Settings",
+    activeUsers: "Active Users",
+    lastRegistrationRequest: "Last Registration Request",
+    themeToggle: "Dark Mode",
+    notifications: "Notifications",
+    profile: "Profile",
+    signOut: "Sign Out",
+  },
+  ar: {
+    opream: "أوبريم",
+    onWay: "في الطريق",
+    userName: "أحمد محمد",
+    userRole: "مسؤول",
+    dashboard: "لوحة التحكم",
+    users: "المستخدمون",
+    chats: "الدردشات",
+    reports: "التقارير",
+    settings: "الإعدادات",
+    activeUsers: "المستخدمون النشطون",
+    lastRegistrationRequest: "آخر طلب تسجيل",
+    themeToggle: "الوضع الداكن",
+    notifications: "الإشعارات",
+    profile: "الملف الشخصي",
+    signOut: "تسجيل الخروج",
+  },
+  fr: {
+    opream: "OPream",
+    onWay: "En chemin",
+    userName: "Ahmed Mohamed",
+    userRole: "Administrateur",
+    dashboard: "Tableau de bord",
+    users: "Utilisateurs",
+    chats: "Discussions",
+    reports: "Rapports",
+    settings: "Paramètres",
+    activeUsers: "Utilisateurs actifs",
+    lastRegistrationRequest: "Dernière demande d'inscription",
+    themeToggle: "Mode sombre",
+    notifications: "Notifications",
+    profile: "Profil",
+    signOut: "Déconnexion",
+  },
+  ru: {
+    opream: "ОПрем",
+    onWay: "В пути",
+    userName: "Ахмед Мохамед",
+    userRole: "Администратор",
+    dashboard: "Панель управления",
+    users: "Пользователи",
+    chats: "Чаты",
+    reports: "Отчеты",
+    settings: "Настройки",
+    activeUsers: "Активные пользователи",
+    lastRegistrationRequest: "Последний запрос на регистрацию",
+    themeToggle: "Темный режим",
+    notifications: "Уведомления",
+    profile: "Профиль",
+    signOut: "Выйти",
+  },
+};
 
 const useWindowDimensions = () => {
   const isClient = typeof window === "object";
@@ -119,11 +194,15 @@ const NavBarLink = ({
 };
 
 const NavBar = () => {
+  const bool = useBooleanValue((state) => state.boolean);
+
+  const language = useLanguageStore((state) => state.language); // Get current language
+  const t = translations[language] || translations.en; // Fallback to English
+  const [search, setSearch] = useState("");
+
   const path = usePathname();
   // console.log("👾 ~ NavBar ~ path:", path);
   const toggleNav = useBooleanValue((state: any) => state.toggle);
-  const language = useLanguageStore((state) => state.language);
-
   const [dropdownOpen, setDropdownOpen] = useState<string | null>(null);
 
   const [profile, setProfile] = useState(false);
@@ -187,12 +266,12 @@ const NavBar = () => {
     {
       href: "/",
       icon: FaTachometerAlt,
-      label: "Dashboard",
+      label: t.dashboard,
     },
     {
       href: "/users",
       icon: FaRegUser,
-      label: "Users",
+      label: t.users,
       children: (
         <>
           <li>
@@ -225,19 +304,20 @@ const NavBar = () => {
     {
       href: "/chats",
       icon: PiChatCircleBold,
-      label: "Chats",
+      label: t.chats,
     },
     {
       href: "/reports",
       icon: TbReportAnalytics,
-      label: "Reports",
+      label: t.reports,
     },
     {
       href: "/settings",
       icon: FiSettings,
-      label: "Settings",
+      label: t.settings,
     },
   ];
+
   if (!isClient)
     return (
       <div className="absolute left-0 top-0 z-[9999] flex h-screen w-full items-center justify-center bg-bgPrimary">
@@ -247,9 +327,7 @@ const NavBar = () => {
 
   return (
     <>
-      <header 
-      dir={language === "ar" ? "rtl" : "ltr"}
-      >
+      <header dir={language === "ar" ? "rtl" : "ltr"}>
         <div>
           <header
             className={`sticky inset-x-0 top-0 z-[48] flex w-full flex-wrap bg-bgPrimary py-2.5 text-sm sm:flex-nowrap sm:justify-start sm:py-4 lg:ps-64`}
@@ -267,6 +345,7 @@ const NavBar = () => {
                   <img src="/images/Opream.png" alt="Opream Icon" />
                 </Link>
               </div>
+
               <div className="ms-auto flex w-full items-center justify-end sm:order-3 sm:justify-between sm:gap-x-3">
                 <div className="sm:hidden">
                   <button
@@ -292,6 +371,26 @@ const NavBar = () => {
                 </div>
 
                 <div className="hidden sm:block"></div>
+                <div className={`${bool ? "ml-[28px]" : "-ml-[180px]"} -mb-4 flex h-full w-full items-center justify-between text-center max-[502px]:grid max-[502px]:justify-center lg:flex`}>
+                  <div className="mb-3 w-full">
+                    <label htmlFor="icon" className="sr-only">
+                      Search
+                    </label>
+                    <div className="relative w-full">
+                      <div className="absolute inset-y-0 start-0 z-20 flex items-center ps-4">
+                        <FaSearch className="text-textSecondary" size={16} />
+                      </div>
+                      <input
+                        onChange={(e) => setSearch(e.target.value)}
+                        type="text"
+                        id="icon"
+                        name="icon"
+                        className="block h-12 w-full bg-bgSecondary px-4 py-2 ps-11 text-sm outline-none focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50"
+                        placeholder="Search"
+                      />
+                    </div>
+                  </div>
+                </div>
 
                 <div className="flex flex-row items-center justify-end gap-2">
                   <Switch
@@ -327,9 +426,9 @@ const NavBar = () => {
                             />
                             <div className="flex flex-col items-start">
                               <Text size={"md"} font={"semiBold"}>
-                                Ahmed Mohamed
+                                {t.userName}
                               </Text>
-                              <Text size={"md"}>Admin</Text>
+                              <Text size={"md"}>{t.userRole}</Text>
                             </div>
                             <MdKeyboardArrowDown size={25} />
                           </div>
@@ -457,10 +556,10 @@ const NavBar = () => {
                           alt="Logo"
                         />
                         <Text size={"xl"} font={"semiBold"} color={"primary2"}>
-                          OPream
+                          {t.opream}
                         </Text>
                         <Text size={"xl"} font={"semiBold"}>
-                          On Way
+                          {t.onWay}
                         </Text>
                       </div>
                     )}

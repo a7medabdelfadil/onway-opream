@@ -1,6 +1,6 @@
 import Button from "./Button";
 import { Text } from "./Text";
-import { FaStar, FaPlus } from "react-icons/fa6";
+import { FaStar } from "react-icons/fa6";
 
 /* eslint-disable @next/next/no-img-element */
 const Products = ({ products }: { products?: any }) => {

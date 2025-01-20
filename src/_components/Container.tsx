@@ -1,3 +1,5 @@
+'use client';
+
 import type { ReactNode } from "react";
 import { useBooleanValue, useLanguageStore } from "~/APIs/store";
 
@@ -8,14 +10,14 @@ const Container = ({ children }: { children: ReactNode }) => {
   return (
     <div
       dir={language === "ar" ? "rtl" : "ltr"} 
-      className={`mt-5 transform transition duration-300 ease-in ${
+      className={`mt-5 transform transition duration-300 ease-in ${language === "ar" ? "lg:ml-[20px]" : "lg:mr-[20px]"} ${
         bool
           ? language === "ar"
-            ? "lg:mr-[320px] lg:ml-[110px]"
-            : "lg:ml-[320px] lg:mr-[110px]"
+            ? "lg:mr-[320px]"
+            : "lg:ml-[320px]"
           : language === "ar"
-          ? "lg:mr-[110px] lg:ml-[20px]"
-          : "lg:ml-[110px] lg:mr-[20px]"
+          ? "lg:mr-[110px]"
+          : "lg:ml-[110px]"
       }`}
     >
       {children}
