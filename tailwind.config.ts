@@ -39,6 +39,7 @@ export default {
         textMuted: "rgba(var(--text-muted))",
         error: "rgba(var(--error))",
         softRed: "rgba(var(--soft-red))",
+        softRedHover: "rgba(var(--soft-red-hover))",
         success: "rgba(var(--success))",
         limeGreen: "rgba(var(--limeGreen))",
         info: "rgba(var(--info))",

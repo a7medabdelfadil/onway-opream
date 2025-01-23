@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 html {
   /* touch-action: none; */
   /* -ms-touch-action: none; */
@@ -44,7 +45,8 @@ html {
   --bg-powder-blue: 180, 192, 204; /* #b4c0cc */
   --warning: 244, 189, 14; /* #f4bd0e */
   --error: 229, 56, 53; /* #e53835 */
-  --soft-red: 255, 127, 116; /* #ff7f74 */
+  --soft-red: 197, 101, 101; /* #C56565 */
+  --soft-red-hover: 163, 59, 59; /* #A33B3B */
   --success: 30, 224, 172; /* #1ee0ac */
   --limeGreen: 101, 197, 101; /* #65C565 */
   --info: 9, 194, 222; /* #09c2de */
@@ -76,7 +78,8 @@ html {
   --bg-powder-blue: 180, 192, 204; /* #b4c0cc */
   --warning: 248, 155, 34; /* #f89b22 */
   --error: 235, 103, 94; /* #eb675e */
-  --soft-red: 255, 127, 116; /* #ff7f74 */
+  --soft-red: 197, 101, 101; /* #C56565 */
+  --soft-red-hover: 163, 59, 59; /* #A33B3B */
   --success: 26, 200, 119; /* #1ac877 */
   --limeGreen: 101, 197, 101; /* #65C565 */
   --info: 52, 228, 181; /* #34e4b5 */
@@ -174,7 +177,7 @@ html {
     background: #0d43af;
   }
   
-  @media (max-width: 768px) {
+  /* @media (max-width: 768px) {
     ::-webkit-scrollbar-thumb {
       background: #3498DB;
       border-radius: 10px;
@@ -182,5 +185,5 @@ html {
     ::-webkit-scrollbar-thumb:hover {
       background: #2d85c0;
     }
-  }
+  } */
 }

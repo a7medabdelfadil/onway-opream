@@ -371,7 +371,9 @@ const NavBar = () => {
                 </div>
 
                 <div className="hidden sm:block"></div>
-                <div className={`${bool ? "ml-[28px]" : "-ml-[180px]"} -mb-4 flex h-full w-full items-center justify-between text-center max-[502px]:grid max-[502px]:justify-center lg:flex`}>
+                <div
+                  className={`${bool ? "ml-[28px]" : "-ml-[180px]"} -mb-4 flex h-full w-full items-center justify-between text-center max-[502px]:grid max-[502px]:justify-center lg:flex`}
+                >
                   <div className="mb-3 w-full">
                     <label htmlFor="icon" className="sr-only">
                       Search
@@ -409,52 +411,64 @@ const NavBar = () => {
                     />
                   </Link>
 
-                  <div className="hs-dropdown relative inline-flex [--placement:bottom-right]">
+                  <div className="relative justify-end inline-flex w-[225px]">
                     <DropdownMenu.Root>
                       <DropdownMenu.Trigger asChild>
                         <button
                           onClick={toggleProfile}
-                          id="hs-dropdown-with-header"
+                          id="dropdown-trigger"
                           type="button"
-                          className="outline-none disabled:pointer-events-none disabled:opacity-50"
+                          className="outline-none focus:ring-2 focus:ring-primary disabled:pointer-events-none disabled:opacity-50"
                         >
-                          <div className="flex items-center gap-2">
+                          <div className="flex items-center gap-3">
                             <img
-                              className="inline-block h-[45px] w-[45px] rounded ring-2 ring-bgSecondary"
+                              className="h-12 w-12 rounded-full ring-2 ring-bgSecondary"
                               src="/images/profile.png"
                               alt="User Avatar"
                             />
                             <div className="flex flex-col items-start">
-                              <Text size={"md"} font={"semiBold"}>
+                              <Text
+                                size="md"
+                                font="semiBold"
+                                className="text-textPrimary"
+                              >
                                 {t.userName}
                               </Text>
-                              <Text size={"md"}>{t.userRole}</Text>
+                              <Text size="sm" className="text-textSecondary">
+                                {t.userRole}
+                              </Text>
                             </div>
-                            <MdKeyboardArrowDown size={25} />
+                            <MdKeyboardArrowDown
+                              size={20}
+                              className="text-textSecondary transition-transform duration-200"
+                            />
                           </div>
                         </button>
                       </DropdownMenu.Trigger>
 
                       {profile && (
                         <DropdownMenu.Content
-                          className={`fixed right-[20px] top-[20px] min-w-60 rounded-lg bg-bgPrimary p-2 text-textPrimary shadow-md`}
-                          aria-labelledby="hs-dropdown-with-header"
+                          className={`absolute ${language == "ar"? "-left-36": "right-0 "} top-1 z-10 mt-2 min-w-[250px] rounded-lg bg-bgPrimary p-3 text-textPrimary shadow-md`}
+                          aria-labelledby="dropdown-trigger"
                           align="end"
                           sideOffset={5}
                         >
-                          <div className="rounded-t-lg bg-bgPrimary px-5 py-3">
-                            <p className="text-sm text-textPrimary">
+                          {/* Header */}
+                          <div className="mb-3 border-b border-bgSecondary pb-3">
+                            <p className="text-sm text-textSecondary">
                               Signed in as
                             </p>
                             <p className="text-sm font-medium text-textPrimary">
                               {userData?.email}
                             </p>
                           </div>
-                          <div className="mt-2 py-2">
+
+                          {/* Links */}
+                          <div className="space-y-2">
                             <DropdownMenu.Item asChild>
                               <Link
-                                className="flex items-center gap-x-3.5 rounded-lg border-none px-3 py-2 text-sm text-textPrimary outline-none hover:bg-bgSecondary"
                                 href="/profile"
+                                className="flex items-center gap-x-3 rounded-md px-3 py-2 text-sm text-textPrimary hover:bg-bgSecondary hover:text-primary"
                               >
                                 <svg
                                   className="h-4 w-4 flex-shrink-0"
@@ -473,16 +487,16 @@ const NavBar = () => {
                                   <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
                                   <path d="M16 3.13a4 4 0 0 1 0 7.75" />
                                 </svg>
-                                Profile
+                                {t.profile}
                               </Link>
                             </DropdownMenu.Item>
                             <DropdownMenu.Item asChild>
                               <a
                                 onClick={() => DeleteCookie()}
-                                className="flex items-center gap-x-3.5 rounded-lg border-none px-3 py-2 text-sm text-textPrimary outline-none hover:bg-error hover:text-white"
                                 href="/login"
+                                className="flex items-center gap-x-3 rounded-md px-3 py-2 text-sm text-error hover:bg-error hover:text-white"
                               >
-                                Sign out
+                                {t.signOut}
                               </a>
                             </DropdownMenu.Item>
                           </div>

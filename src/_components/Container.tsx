@@ -10,7 +10,7 @@ const Container = ({ children }: { children: ReactNode }) => {
   return (
     <div
       dir={language === "ar" ? "rtl" : "ltr"} 
-      className={`mt-5 transform transition duration-300 ease-in ${language === "ar" ? "lg:ml-[20px]" : "lg:mr-[20px]"} ${
+      className={`mx-5 mt-5 transform transition duration-300 ease-in ${language === "ar" ? "lg:ml-[20px]" : "lg:mr-[20px]"} ${
         bool
           ? language === "ar"
             ? "lg:mr-[320px]"
