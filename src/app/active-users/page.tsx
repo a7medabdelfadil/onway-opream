@@ -7,6 +7,8 @@ import Container from "~/_components/Container";
 import { Text } from "~/_components/Text";
 import { TbPhoto } from "react-icons/tb";
 import { RiLock2Fill } from "react-icons/ri";
+import { useLanguageStore } from "~/APIs/store";
+import translations from "./translations";
 
 interface Image {
   name: string;
@@ -22,6 +24,9 @@ interface TableRow {
 }
 
 function ActiveUsers() {
+  const language = useLanguageStore((state) => state.language); // Get current language
+  const t = translations[language] || translations.en; // Fallback to English
+
   const [currentPage, setCurrentPage] = useState<string>("passenger");
 
   // Passenger
@@ -247,7 +252,7 @@ function ActiveUsers() {
   return (
     <Container>
       <Text font={"bold"} size={"2xl"}>
-        Users
+      {t.users}
       </Text>
       <div className="my-8 flex gap-4">
         <div
@@ -261,7 +266,7 @@ function ActiveUsers() {
               currentPage === "passenger" ? "text-primary2 underline" : ""
             }
           >
-            Passenger
+            {t.passenger}
           </Text>
         </div>
         <div
@@ -273,25 +278,25 @@ function ActiveUsers() {
             size={"xl"}
             className={currentPage === "Host" ? "text-primary2 underline" : ""}
           >
-            Host
+            {t.host}
           </Text>
         </div>
       </div>
       {currentPage === "passenger" ? (
         <Box className="mb-8 overflow-x-auto">
           <Text font={"semiBold"} size={"xl"} className="mb-4">
-            Last Registration Request
+            {t.lastRegistrationRequest}
           </Text>
           <div className="min-w-[900px]">
             {/* Header */}
             <div className="grid grid-cols-6 gap-4 px-4 py-2 font-medium text-textSecondary">
-              <div className="text-start">Status</div>
-              <div className="text-center">Images</div>
-              <div className="text-center">Address</div>
-              <div className="text-center">Email</div>
-              <div className="text-center">Users</div>
+              <div className="text-start">{t.status}</div>
+              <div className="text-center">{t.images}</div>
+              <div className="text-center">{t.address}</div>
+              <div className="text-center">{t.email}</div>
+              <div className="text-center">{t.users}</div>
               <div className="flex items-center justify-end gap-2">
-                Id
+                {t.id}
                 <div className="flex items-center space-x-3">
                   <label className="flex cursor-pointer items-center">
                     <input
@@ -364,8 +369,8 @@ function ActiveUsers() {
                   <div className="text-center">{row.user}</div>
 
                   {/* Users */}
-                  <div className="flex items-start justify-end space-x-3">
-                    <span>{row.id}</span>
+                  <div className="flex items-start justify-end">
+                    <span className="mx-2">{row.id}</span>
                     <label className="flex cursor-pointer items-center">
                       <input
                         type="checkbox"
@@ -405,18 +410,18 @@ function ActiveUsers() {
       ) : (
         <Box className="mb-8 overflow-x-auto">
           <Text font={"semiBold"} size={"xl"} className="mb-4">
-            Last Registration Request
+            {t.lastRegistrationRequest}
           </Text>
           <div className="min-w-[900px]">
             {/* Header */}
             <div className="grid grid-cols-6 gap-4 px-4 py-2 font-medium text-textSecondary">
-            <div className="text-start">Status</div>
-              <div className="text-center">Images</div>
-              <div className="text-center">Address</div>
-              <div className="text-center">Email</div>
-              <div className="text-center">Users</div>
+            <div className="text-start">{t.status}</div>
+              <div className="text-center">{t.images}</div>
+              <div className="text-center">{t.address}</div>
+              <div className="text-center">{t.address}</div>
+              <div className="text-center">{t.email}</div>
               <div className="flex items-center justify-end gap-2">
-                Id
+                {t.id}
                 <div className="flex items-center space-x-3">
                   <label className="flex cursor-pointer items-center">
                     <input
@@ -489,8 +494,8 @@ function ActiveUsers() {
                   <div className="text-center">{row.user}</div>
 
                   {/* Users */}
-                  <div className="flex items-start justify-end space-x-3">
-                    <span>{row.id}</span>
+                  <div className="flex items-start justify-end">
+                    <span className="mx-2">{row.id}</span>
                     <label className="flex cursor-pointer items-center">
                       <input
                         type="checkbox"

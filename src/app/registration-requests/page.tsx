@@ -8,6 +8,8 @@ import { Text } from "~/_components/Text";
 import { FaTimes } from "react-icons/fa";
 import { FaCheck } from "react-icons/fa6";
 import { TbPhoto } from "react-icons/tb";
+import { useLanguageStore } from "~/APIs/store";
+import translations from "./translations";
 
 interface Image {
   name: string;
@@ -22,6 +24,9 @@ interface TableRow {
 }
 
 function RegistrationRequests() {
+  const language = useLanguageStore((state) => state.language); // Get current language
+  const t = translations[language] || translations.en; // Fallback to English
+
   const [currentPage, setCurrentPage] = useState<string>("passenger");
 
   // Passenger
@@ -184,7 +189,7 @@ function RegistrationRequests() {
   return (
     <Container>
       <Text font={"bold"} size={"2xl"}>
-        Users
+        {t.users}
       </Text>
       <div className="my-8 flex gap-4">
         <div
@@ -198,7 +203,7 @@ function RegistrationRequests() {
               currentPage === "passenger" ? "text-primary2 underline" : ""
             }
           >
-            Passenger
+            {t.passenger}
           </Text>
         </div>
         <div
@@ -210,24 +215,24 @@ function RegistrationRequests() {
             size={"xl"}
             className={currentPage === "Host" ? "text-primary2 underline" : ""}
           >
-            Host
+            {t.host}
           </Text>
         </div>
       </div>
       {currentPage === "passenger" ? (
         <Box className="mb-8 overflow-x-auto">
           <Text font={"semiBold"} size={"xl"} className="mb-4">
-            Last Registration Request
+            {t.lastRegistrationRequest}
           </Text>
           <div className="min-w-[900px]">
             {/* Header */}
             <div className="grid grid-cols-5 gap-4 px-4 py-2 font-medium text-textSecondary">
-              <div className="text-start">Status</div>
-              <div className="text-center">Request Date</div>
-              <div className="text-center">Images</div>
-              <div className="text-center">Address</div>
+              <div className="text-start">{t.status}</div>
+              <div className="text-center">{t.requestDate}</div>
+              <div className="text-center">{t.images}</div>
+              <div className="text-center">{t.address}</div>
               <div className="flex items-center justify-end gap-2">
-                Users
+                {t.users}
                 <div className="flex items-center space-x-3">
                   <label className="flex cursor-pointer items-center">
                     <input
@@ -342,17 +347,17 @@ function RegistrationRequests() {
       ) : (
         <Box className="mb-8 overflow-x-auto">
           <Text font={"semiBold"} size={"xl"} className="mb-4">
-            Last Registration Request
+            {t.lastRegistrationRequest}
           </Text>
           <div className="min-w-[900px]">
             {/* Header */}
             <div className="grid grid-cols-5 gap-4 px-4 py-2 font-medium text-textSecondary">
-              <div className="text-start">Status</div>
-              <div className="text-center">Request Date</div>
-              <div className="text-center">Images</div>
-              <div className="text-center">Address</div>
+              <div className="text-start">{t.status}</div>
+              <div className="text-center">{t.requestDate}</div>
+              <div className="text-center">{t.images}</div>
+              <div className="text-center">{t.address}</div>
               <div className="flex items-center justify-end gap-2">
-                Users
+                {t.users}
                 <div className="flex items-center space-x-3">
                   <label className="flex cursor-pointer items-center">
                     <input
@@ -400,7 +405,7 @@ function RegistrationRequests() {
                     <div className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-md bg-softRed hover:bg-softRedHover transition duration-300 text-white">
                       <FaTimes size={20} />
                     </div>
-                    <div className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-md bg-primary2 text-white">
+                    <div className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-md bg-primary2 hover:bg-primary2Hover transition duration-300 text-white">
                       <FaCheck size={18} />
                     </div>
                   </div>

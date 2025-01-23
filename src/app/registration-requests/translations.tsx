@@ -1,0 +1,53 @@
+const translations = {
+    en: {
+      title: "Registration Requests",
+      passenger: "Passenger",
+      host: "Host",
+      lastRegistrationRequest: "Last Registration Request",
+      status: "Status",
+      requestDate: "Request Date",
+      images: "Images",
+      address: "Address",
+      users: "Users",
+      unselected: "Unselected",
+    },
+    ar: {
+      title: "طلبات التسجيل",
+      passenger: "الركاب",
+      host: "المضيفون",
+      lastRegistrationRequest: "آخر طلب تسجيل",
+      status: "الحالة",
+      requestDate: "تاريخ الطلب",
+      images: "الصور",
+      address: "العنوان",
+      users: "المستخدمون",
+      unselected: "غير محدد",
+    },
+    fr: {
+      title: "Demandes d'inscription",
+      passenger: "Passagers",
+      host: "Hôtes",
+      lastRegistrationRequest: "Dernière demande d'inscription",
+      status: "Statut",
+      requestDate: "Date de la demande",
+      images: "Images",
+      address: "Adresse",
+      users: "Utilisateurs",
+      unselected: "Non sélectionné",
+    },
+    ru: {
+      title: "Запросы на регистрацию",
+      passenger: "Пассажиры",
+      host: "Хосты",
+      lastRegistrationRequest: "Последний запрос на регистрацию",
+      status: "Статус",
+      requestDate: "Дата запроса",
+      images: "Изображения",
+      address: "Адрес",
+      users: "Пользователи",
+      unselected: "Не выбрано",
+    },
+  };
+  
+  export default translations;
+  

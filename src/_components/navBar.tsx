@@ -40,6 +40,7 @@ const translations = {
     notifications: "Notifications",
     profile: "Profile",
     signOut: "Sign Out",
+    search: "Search",
   },
   ar: {
     opream: "أوبريم",
@@ -57,6 +58,7 @@ const translations = {
     notifications: "الإشعارات",
     profile: "الملف الشخصي",
     signOut: "تسجيل الخروج",
+    search: "بحث",
   },
   fr: {
     opream: "OPream",
@@ -74,6 +76,7 @@ const translations = {
     notifications: "Notifications",
     profile: "Profil",
     signOut: "Déconnexion",
+    search: "Recherche",
   },
   ru: {
     opream: "ОПрем",
@@ -91,6 +94,7 @@ const translations = {
     notifications: "Уведомления",
     profile: "Профиль",
     signOut: "Выйти",
+    search: "Поиск",
   },
 };
 
@@ -283,7 +287,7 @@ const NavBar = () => {
                   : "text-textSecondary"
               } ${small ? "absolute left-12 top-8 z-[2002] w-[200px] rounded-t-md border-l border-r border-t border-borderPrimary/50" : ""} block bg-bgPrimary px-4 py-2 font-semibold hover:bg-bgSecondary hover:text-primary2`}
             >
-              Active User
+              {t.activeUsers}
             </Link>
           </li>
           <li>
@@ -295,7 +299,7 @@ const NavBar = () => {
                   : "text-textSecondary"
               } ${small ? "absolute left-12 top-16 z-[2002] w-[200px] rounded-b-md border-b border-l border-r border-borderPrimary/50" : ""} block bg-bgPrimary px-4 py-2 font-semibold hover:bg-bgSecondary hover:text-primary2`}
             >
-              Last Registration Request
+              {t.lastRegistrationRequest}
             </Link>
           </li>
         </>
@@ -388,7 +392,7 @@ const NavBar = () => {
                         id="icon"
                         name="icon"
                         className="block h-12 w-full bg-bgSecondary px-4 py-2 ps-11 text-sm outline-none focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50"
-                        placeholder="Search"
+                        placeholder={t.search}
                       />
                     </div>
                   </div>
