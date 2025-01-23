@@ -55,7 +55,7 @@ html {
   --border-secondary: 103, 116, 137;  /* #677489 */
   --thead: 218, 234, 251; /* #daeafb */
   --light-gray: 252, 252, 252; /* #FCFCFC */
-  --black-or-white: 0, 0, 0; /* #000000 */
+  --black-or-white: 255, 255, 255; /* #ffffff */
   --chat: 255, 234, 209; /* #ffeed1 */
 }
 
@@ -87,8 +87,8 @@ html {
   --border-primary: 42, 45, 50; /* #2a2d32 */
   --border-secondary: 52, 56, 61; /* #34383d */
   --thead: 7, 31, 58; /* #071f3a */
-  --black-or-white: 255, 255, 255; /* #ffffff */
   --notification: 15, 15, 15; /* #0f0f0f */
+  --black-or-white: 0, 0, 0; /* #000000 */
   --chat: 223, 189, 144; /* #dfbd90 */
 }
 

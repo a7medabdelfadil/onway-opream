@@ -5,6 +5,7 @@ interface BoxProps extends React.HTMLAttributes<HTMLDivElement> {
   shadow?: "none" | "sm" | "md" | "lg" | "xl"; 
   border?: "none" | "borderPrimary" | "borderSecondary" | "borderGray";
   padding?: string;
+  width?: string;
 }
 
 /**
@@ -23,10 +24,10 @@ interface BoxProps extends React.HTMLAttributes<HTMLDivElement> {
  *
  * @returns {React.ReactElement} A `div` element with the specified props.
  */
-const Box: React.FC<BoxProps> = ({ children, className = "", shadow = "sm", border = "none", padding = "4", ...props }) => {
+const Box: React.FC<BoxProps> = ({ children, className = "", shadow = "sm", border = "none", padding = "4", width="full", ...props }) => {
   return (
     <div
-      className={`w-full rounded-xl bg-bgPrimary p-${padding} shadow-${shadow} ${border !== "none" ? `border ${border}` : ""} ${className}`}
+      className={`w-${width} rounded-xl bg-bgPrimary p-${padding} shadow-${shadow} ${border !== "none" ? `border ${border}` : ""} ${className}`}
       {...props}
     >
       {children}
