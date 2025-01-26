@@ -376,7 +376,15 @@ const NavBar = () => {
 
                 <div className="hidden sm:block"></div>
                 <div
-                  className={`${bool ? "ml-[28px]" : "-ml-[180px]"} -mb-4 flex h-full w-full items-center justify-between text-center max-[502px]:grid max-[502px]:justify-center lg:flex`}
+                  className={`${
+                    language === "ar"
+                      ? bool
+                        ? "mr-[28px]"
+                        : "-mr-[180px]"
+                      : bool
+                        ? "ml-[28px]"
+                        : "-ml-[180px]"
+                  } -mb-4 flex h-full w-full items-center justify-between text-center max-[502px]:grid max-[502px]:justify-center lg:flex`}
                 >
                   <div className="mb-3 w-full">
                     <label htmlFor="icon" className="sr-only">
@@ -391,7 +399,7 @@ const NavBar = () => {
                         type="text"
                         id="icon"
                         name="icon"
-                        className="block h-12 w-full bg-bgSecondary px-4 py-2 ps-11 text-sm outline-none focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50"
+                        className="block h-12 w-full bg-bgSecondary px-4 py-2 ps-11 text-sm outline-none focus:border-primary2 focus:ring-primary2 disabled:pointer-events-none disabled:opacity-50"
                         placeholder={t.search}
                       />
                     </div>
@@ -415,7 +423,7 @@ const NavBar = () => {
                     />
                   </Link>
 
-                  <div className="relative justify-end inline-flex w-[225px]">
+                  <div className="relative inline-flex w-[225px] justify-end">
                     <DropdownMenu.Root>
                       <DropdownMenu.Trigger asChild>
                         <button
@@ -452,7 +460,7 @@ const NavBar = () => {
 
                       {profile && (
                         <DropdownMenu.Content
-                          className={`absolute ${language == "ar"? "-left-36": "right-0 "} top-1 z-10 mt-2 min-w-[250px] rounded-lg bg-bgPrimary p-3 text-textPrimary shadow-md`}
+                          className={`absolute ${language == "ar" ? "-left-36" : "right-0"} top-1 z-10 mt-2 min-w-[250px] rounded-lg bg-bgPrimary p-3 text-textPrimary shadow-md`}
                           aria-labelledby="dropdown-trigger"
                           align="end"
                           sideOffset={5}

@@ -50,6 +50,7 @@ export default {
         borderSecondary: "rgba(var(--border-secondary))",
         blackOrWhite: "rgba(var(--black-or-white))",
         thead: "rgba(var(--thead))",
+        chat: "rgba(var(--chat))",
         lightGray: "rgba(var(--light-gray))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",

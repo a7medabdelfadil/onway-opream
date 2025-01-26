@@ -5,7 +5,6 @@ import { FaTimes } from "react-icons/fa";
 import { FaCheck } from "react-icons/fa6";
 import { TbPhoto } from "react-icons/tb";
 import Box from "~/_components/Box";
-import BoxGrid from "~/_components/BoxGrid";
 import Container from "~/_components/Container";
 import NewBookingChart from "~/_components/NewBookingChat";
 import { Text } from "~/_components/Text";
@@ -107,9 +106,9 @@ function Dashboard() {
   return (
     <Container>
       <Text font={"semiBold"} size={"2xl"} className="mb-4">
-      {t.dashboardTitle}
+        {t.dashboardTitle}
       </Text>
-      <BoxGrid columns={4} mdColumns={2} gap={1}>
+      <div className="grid grid-cols-2 gap-4 xl:grid-cols-4">
         <Box className="p-8">
           <Text color={"gray"}>{t.totalUsers}</Text>
           <div className="flex items-center justify-between">
@@ -117,7 +116,7 @@ function Dashboard() {
               250
             </Text>
             <Text className="w-fit rounded-full bg-limeGreen/10 px-3 py-1 text-limeGreen">
-            {t.growth}
+              {t.growth}
             </Text>
           </div>
         </Box>
@@ -128,7 +127,7 @@ function Dashboard() {
               63
             </Text>
             <Text className="w-fit rounded-full bg-limeGreen/10 px-3 py-1 text-limeGreen">
-            {t.growth}
+              {t.growth}
             </Text>
           </div>
         </Box>
@@ -139,7 +138,7 @@ function Dashboard() {
               $52.6k
             </Text>
             <Text className="w-fit rounded-full bg-limeGreen/10 px-3 py-1 text-limeGreen">
-            {t.growth}
+              {t.growth}
             </Text>
           </div>
         </Box>
@@ -150,28 +149,23 @@ function Dashboard() {
               21
             </Text>
             <Text className="w-fit rounded-full bg-error/10 px-3 py-1 text-error">
-            {t.decline}
+              {t.decline}
             </Text>
           </div>
         </Box>
-      </BoxGrid>
-      <div className="mt-4 flex gap-4">
-        <Box className="w-3/5">
-          <Text className="text-error">
-            Not the last version! style will be updated
-          </Text>
-          <WeeklyChart />
-        </Box>
-        <Box className="w-2/5">
-          <Text className="text-error">
-            Not the last version! style will be updated
-          </Text>
-          <NewBookingChart />
-        </Box>
       </div>
+      <div className="mt-4 flex flex-wrap gap-4">
+        <div className="w-[calc(60%-8px)] sm:w-full md:w-[calc(50%-8px)] lg:w-[calc(60%-8px)]">
+          <WeeklyChart />
+        </div>
+        <div className="w-[calc(40%-8px)] sm:w-full md:w-[calc(50%-8px)] lg:w-[calc(40%-8px)]">
+          <NewBookingChart />
+        </div>
+      </div>
+
       <Box className="mb-8 mt-4 overflow-x-auto">
         <Text font={"semiBold"} size={"xl"} className="mb-4">
-        {t.lastRegistrationRequest}
+          {t.lastRegistrationRequest}
         </Text>
         <div className="min-w-[900px]">
           {/* Header */}
@@ -226,7 +220,7 @@ function Dashboard() {
               >
                 {/* Status */}
                 <div className="flex justify-start gap-4">
-                  <div className="hover:bg-softRedHover flex h-8 w-8 cursor-pointer items-center justify-center rounded-md bg-softRed text-white transition duration-300">
+                  <div className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-md bg-softRed text-white transition duration-300 hover:bg-softRedHover">
                     <FaTimes size={20} />
                   </div>
                   <div className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-md bg-primary2 text-white transition duration-300 hover:bg-primary2Hover">
