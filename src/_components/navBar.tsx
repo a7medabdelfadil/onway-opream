@@ -40,6 +40,7 @@ const translations = {
     notifications: "Notifications",
     profile: "Profile",
     signOut: "Sign Out",
+    signedInAs: "Signed in as",
     search: "Search",
   },
   ar: {
@@ -58,6 +59,7 @@ const translations = {
     notifications: "الإشعارات",
     profile: "الملف الشخصي",
     signOut: "تسجيل الخروج",
+    signedInAs: "تم تسجيل الدخول باسم",
     search: "بحث",
   },
   fr: {
@@ -76,6 +78,7 @@ const translations = {
     notifications: "Notifications",
     profile: "Profil",
     signOut: "Déconnexion",
+    signedInAs: "Connecté en tant que",
     search: "Recherche",
   },
   ru: {
@@ -94,6 +97,7 @@ const translations = {
     notifications: "Уведомления",
     profile: "Профиль",
     signOut: "Выйти",
+    signedInAs: "Вошли как",
     search: "Поиск",
   },
 };
@@ -354,7 +358,7 @@ const NavBar = () => {
                 <div className="sm:hidden">
                   <button
                     type="button"
-                    className="inline-flex h-[2.375rem] w-[2.375rem] items-center justify-center gap-x-2 rounded-full border border-transparent text-sm font-semibold text-gray-800 hover:bg-gray-100 disabled:pointer-events-none disabled:opacity-50"
+                    className="inline-flex h-[2.375rem] w-[2.375rem] items-center justify-center gap-x-2 rounded-full border border-transparent text-sm font-semibold text-textPrimary hover:bg-bgSecondary disabled:pointer-events-none disabled:opacity-50"
                   >
                     <svg
                       className="size-4 flex-shrink-0"
@@ -386,7 +390,7 @@ const NavBar = () => {
                         : "-ml-[180px]"
                   } -mb-4 flex h-full w-full items-center justify-between text-center max-[502px]:grid max-[502px]:justify-center lg:flex`}
                 >
-                  <div className="mb-3 w-full">
+                  <div className="mb-3 hidden w-full md:block">
                     <label htmlFor="icon" className="sr-only">
                       Search
                     </label>
@@ -423,22 +427,22 @@ const NavBar = () => {
                     />
                   </Link>
 
-                  <div className="relative inline-flex w-[225px] justify-end">
+                  <div className="relative inline-flex w-[60px] sm:w-[225px] justify-end">
                     <DropdownMenu.Root>
                       <DropdownMenu.Trigger asChild>
                         <button
                           onClick={toggleProfile}
                           id="dropdown-trigger"
                           type="button"
-                          className="outline-none focus:ring-2 focus:ring-primary disabled:pointer-events-none disabled:opacity-50"
+                          className="outline-none focus:outline-none focus:ring-none disabled:pointer-events-none disabled:opacity-50"
                         >
-                          <div className="flex items-center gap-3">
+                          <div className="flex items-center gap-3 sm:justify-center">
                             <img
-                              className="h-12 w-12 rounded-full ring-2 ring-bgSecondary"
+                              className="h-12 w-12 rounded-full sm:rounded-lg ring-2 ring-bgSecondary"
                               src="/images/profile.png"
                               alt="User Avatar"
                             />
-                            <div className="flex flex-col items-start">
+                            <div className="hidden sm:flex sm:flex-col sm:items-start">
                               <Text
                                 size="md"
                                 font="semiBold"
@@ -452,7 +456,7 @@ const NavBar = () => {
                             </div>
                             <MdKeyboardArrowDown
                               size={20}
-                              className="text-textSecondary transition-transform duration-200"
+                              className="hidden text-textSecondary transition-transform duration-200 sm:block"
                             />
                           </div>
                         </button>
@@ -468,7 +472,7 @@ const NavBar = () => {
                           {/* Header */}
                           <div className="mb-3 border-b border-bgSecondary pb-3">
                             <p className="text-sm text-textSecondary">
-                              Signed in as
+                              {t.signedInAs}
                             </p>
                             <p className="text-sm font-medium text-textPrimary">
                               {userData?.email}
@@ -531,7 +535,7 @@ const NavBar = () => {
               <button
                 onClick={OpenSideBar}
                 type="button"
-                className="flex items-center justify-center gap-x-1.5 rounded-lg border border-borderPrimary px-3 py-2 text-xs text-gray-500 hover:text-gray-600"
+                className="flex items-center justify-center gap-x-1.5 rounded-lg border border-borderPrimary px-3 py-2 text-xs text-textSecondary hover:text-textPrimary"
                 data-hs-overlay="#application-sidebar"
                 aria-controls="application-sidebar"
                 aria-label="Sidebar"

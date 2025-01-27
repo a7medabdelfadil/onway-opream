@@ -132,6 +132,7 @@ function Dashboard() {
 
   const closeRejectMethodModal = () => {
     setIsRejectMethodModalOpen(false);
+    setDescription("");
   };
 
   const openRejectReasonModal = () => {
@@ -141,6 +142,7 @@ function Dashboard() {
   const closeRejectReasonModal = () => {
     setIsRejectReasonModalOpen(false);
     setIsRejectMethodModalOpen(false);
+    setDescription("");
   };
 
   const nextImage = () => {
@@ -294,9 +296,10 @@ function Dashboard() {
                 >
                   {/* Status */}
                   <div className="flex justify-start gap-4">
-                    <div 
-                    onClick={openRejectMethodModal}
-                    className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-md bg-softRed text-white transition duration-300 hover:bg-softRedHover">
+                    <div
+                      onClick={openRejectMethodModal}
+                      className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-md bg-softRed text-white transition duration-300 hover:bg-softRedHover"
+                    >
                       <FaTimes size={20} />
                     </div>
                     <div
@@ -345,7 +348,7 @@ function Dashboard() {
                         className={`h-6 w-6 rounded border-2 transition-all ${
                           selectedUsers[index]
                             ? "border-primary2 bg-primary2"
-                            : "border-borderPrimary bg-white"
+                            : "border-borderPrimary bg-bgPrimary"
                         } flex items-center justify-center`}
                       >
                         {selectedUsers[index] && (
@@ -413,7 +416,7 @@ function Dashboard() {
             <div className="flex flex-col items-center">
               <img src="/images/aproval.png" className="h-auto w-60" />
             </div>
-            <Text font={"medium"}>Approval sent successfully</Text>
+            <Text font={"medium"}>{t.approvalSent}</Text>
           </div>
         </div>
       )}
@@ -431,13 +434,13 @@ function Dashboard() {
               htmlFor="description"
             >
               <Text className="pl-4" font={"semiBold"} size={"xl"}>
-                Reject Reason
+                {t.rejectReason}
               </Text>
               <div className="mb-5 bg-bgPrimary">
                 <TextEditor
                   value={description}
                   onChange={setDescription}
-                  placeholder="Enter your content here..."
+                  placeholder={t.writeRejectReason}
                 />
               </div>
             </label>
@@ -447,10 +450,10 @@ function Dashboard() {
                 className="px-10"
                 onClick={closeRejectMethodModal}
               >
-                Cancel
+                {t.cancel}
               </Button>
               <Button onClick={openRejectReasonModal} className="px-10">
-                Send
+                {t.send}
               </Button>
             </div>
           </div>
@@ -471,7 +474,7 @@ function Dashboard() {
                 className="h-auto w-60 py-14"
               />
             </div>
-            <Text font={"medium"}>The reason for rejection has been sent</Text>
+            <Text font={"medium"}>{t.rejectionSent}</Text>
           </div>
         </div>
       )}

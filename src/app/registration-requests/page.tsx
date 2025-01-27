@@ -38,6 +38,7 @@ function RegistrationRequests() {
   const [isRejectReasonModalOpen, setIsRejectReasonModalOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState<string>("passenger");
 
+
   const openApprovalModal = () => {
     setIsApprovalModalOpen(true);
   };
@@ -52,6 +53,7 @@ function RegistrationRequests() {
 
   const closeRejectMethodModal = () => {
     setIsRejectMethodModalOpen(false);
+    setDescription("");
   };
 
   const openRejectReasonModal = () => {
@@ -61,6 +63,7 @@ function RegistrationRequests() {
   const closeRejectReasonModal = () => {
     setIsRejectReasonModalOpen(false);
     setIsRejectMethodModalOpen(false);
+    setDescription("");
   };
 
   // Passenger
@@ -629,7 +632,7 @@ function RegistrationRequests() {
                           className={`h-6 w-6 rounded border-2 transition-all ${
                             selectedUsersPassenger[index]
                               ? "border-primary2 bg-primary2"
-                              : "border-borderPrimary bg-white"
+                              : "border-borderPrimary bg-bgPrimary"
                           } flex items-center justify-center`}
                         >
                           {selectedUsersPassenger[index] && (
@@ -764,7 +767,7 @@ function RegistrationRequests() {
                           className={`h-6 w-6 rounded border-2 transition-all ${
                             selectedUsersHost[index]
                               ? "border-primary2 bg-primary2"
-                              : "border-borderPrimary bg-white"
+                              : "border-borderPrimary bg-bgPrimary"
                           } flex items-center justify-center`}
                         >
                           {selectedUsersHost[index] && (
@@ -798,13 +801,13 @@ function RegistrationRequests() {
           onClick={closeModalPassenger}
         >
           <div
-            className="relative flex items-center rounded-lg bg-white p-6"
+            className="relative flex items-center rounded-lg bg-bgPrimary p-6"
             onClick={(e) => e.stopPropagation()}
           >
             <RiArrowDropLeftLine
               size={60}
               className="absolute left-4 h-10 w-10 cursor-pointer rounded-lg bg-primary2 text-white transition duration-300 hover:bg-primary2Hover"
-              onClick={nextImagePassenger}
+              onClick={prevImagePassenger}
             />
             <div className="flex flex-col items-center px-60 py-40">
               <img
@@ -827,13 +830,13 @@ function RegistrationRequests() {
           onClick={closeModalHost}
         >
           <div
-            className="relative flex items-center rounded-lg bg-white p-6"
+            className="relative flex items-center rounded-lg bg-bgPrimary p-6"
             onClick={(e) => e.stopPropagation()}
           >
             <RiArrowDropLeftLine
               size={60}
               className="absolute left-4 h-10 w-10 cursor-pointer rounded-lg bg-primary2 text-white transition duration-300 hover:bg-primary2Hover"
-              onClick={nextImageHost}
+              onClick={prevImageHost}
             />
             <div className="flex flex-col items-center px-60 py-40">
               <img
@@ -862,7 +865,7 @@ function RegistrationRequests() {
             <div className="flex flex-col items-center">
               <img src="/images/aproval.png" className="h-auto w-60" />
             </div>
-            <Text font={"medium"}>Approval sent successfully</Text>
+            <Text font={"medium"}>{t.approvalSent}</Text>
           </div>
         </div>
       )}
@@ -880,13 +883,13 @@ function RegistrationRequests() {
               htmlFor="description"
             >
               <Text className="pl-4" font={"semiBold"} size={"xl"}>
-                Reject Reason
+                {t.rejectReason}
               </Text>
               <div className="mb-5 bg-bgPrimary">
                 <TextEditor
                   value={description}
                   onChange={setDescription}
-                  placeholder="Enter your content here..."
+                  placeholder={t.writeRejectReason}
                 />
               </div>
             </label>
@@ -896,10 +899,10 @@ function RegistrationRequests() {
                 className="px-10"
                 onClick={closeRejectMethodModal}
               >
-                Cancel
+                {t.cancel}
               </Button>
               <Button onClick={openRejectReasonModal} className="px-10">
-                Send
+                {t.send}
               </Button>
             </div>
           </div>
@@ -920,7 +923,7 @@ function RegistrationRequests() {
                 className="h-auto w-60 py-14"
               />
             </div>
-            <Text font={"medium"}>The reason for rejection has been sent</Text>
+            <Text font={"medium"}>{t.rejectionSent}</Text>
           </div>
         </div>
       )}

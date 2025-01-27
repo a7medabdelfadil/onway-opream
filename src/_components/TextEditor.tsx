@@ -11,8 +11,123 @@ import {
   FaListUl,
 } from "react-icons/fa";
 import { useTheme } from "next-themes";
-// import { useSelector } from "react-redux";
-// import { RootState } from "@/GlobalRedux/store";
+import { useLanguageStore } from "~/APIs/store";
+
+const translations = {
+  en: {
+    placeholder: "Start typing...",
+    undo: "Undo",
+    redo: "Redo",
+    bold: "Bold",
+    italic: "Italic",
+    underline: "Underline",
+    strikethrough: "Strikethrough",
+    alignLeft: "Align Left",
+    alignCenter: "Align Center",
+    alignRight: "Align Right",
+    orderedList: "Ordered List",
+    unorderedList: "Unordered List",
+    insertLink: "Insert Link",
+    insertImage: "Insert Image",
+    insertCodeBlock: "Insert Code Block",
+    fontColor: "Font Color",
+    backgroundColor: "Background Color",
+    characters: "Characters",
+    paragraph: "Paragraph",
+    heading1: "Heading 1",
+    heading2: "Heading 2",
+    heading3: "Heading 3",
+    small: "Small",
+    normal: "Normal",
+    large: "Large",
+    huge: "Huge",
+  },
+  ar: {
+    placeholder: "ابدأ الكتابة...",
+    undo: "تراجع",
+    redo: "إعادة",
+    bold: "غامق",
+    italic: "مائل",
+    underline: "تسطير",
+    strikethrough: "يتوسطه خط",
+    alignLeft: "محاذاة إلى اليسار",
+    alignCenter: "محاذاة إلى الوسط",
+    alignRight: "محاذاة إلى اليمين",
+    orderedList: "قائمة مرتبة",
+    unorderedList: "قائمة غير مرتبة",
+    insertLink: "إدراج رابط",
+    insertImage: "إدراج صورة",
+    insertCodeBlock: "إدراج كتلة كود",
+    fontColor: "لون الخط",
+    backgroundColor: "لون الخلفية",
+    characters: "الأحرف",
+    paragraph: "فقرة",
+    heading1: "عنوان 1",
+    heading2: "عنوان 2",
+    heading3: "عنوان 3",
+    small: "صغير",
+    normal: "عادي",
+    large: "كبير",
+    huge: "ضخم",
+  },
+  fr: {
+    placeholder: "Commencez à taper...",
+    undo: "Annuler",
+    redo: "Rétablir",
+    bold: "Gras",
+    italic: "Italique",
+    underline: "Souligner",
+    strikethrough: "Barré",
+    alignLeft: "Aligner à gauche",
+    alignCenter: "Aligner au centre",
+    alignRight: "Aligner à droite",
+    orderedList: "Liste ordonnée",
+    unorderedList: "Liste non ordonnée",
+    insertLink: "Insérer un lien",
+    insertImage: "Insérer une image",
+    insertCodeBlock: "Insérer un bloc de code",
+    fontColor: "Couleur de la police",
+    backgroundColor: "Couleur de fond",
+    characters: "Caractères",
+    paragraph: "Paragraphe",
+    heading1: "Titre 1",
+    heading2: "Titre 2",
+    heading3: "Titre 3",
+    small: "Petit",
+    normal: "Normal",
+    large: "Grand",
+    huge: "Énorme",
+  },
+  ru: {
+    placeholder: "Начните вводить текст...",
+    undo: "Отменить",
+    redo: "Повторить",
+    bold: "Жирный",
+    italic: "Курсив",
+    underline: "Подчеркнутый",
+    strikethrough: "Зачеркнутый",
+    alignLeft: "Выровнять по левому краю",
+    alignCenter: "Выровнять по центру",
+    alignRight: "Выровнять по правому краю",
+    orderedList: "Упорядоченный список",
+    unorderedList: "Неупорядоченный список",
+    insertLink: "Вставить ссылку",
+    insertImage: "Вставить изображение",
+    insertCodeBlock: "Вставить блок кода",
+    fontColor: "Цвет текста",
+    backgroundColor: "Цвет фона",
+    characters: "Символы",
+    paragraph: "Абзац",
+    heading1: "Заголовок 1",
+    heading2: "Заголовок 2",
+    heading3: "Заголовок 3",
+    small: "Маленький",
+    normal: "Нормальный",
+    large: "Большой",
+    huge: "Огромный",
+  },
+};
+
 
 const TextEditor = ({
   value,
@@ -23,14 +138,11 @@ const TextEditor = ({
   onChange: (value: string) => void;
   placeholder: string;
 }) => {
+  const language = useLanguageStore((state) => state.language); // Get current language
+  const t = translations[language] || translations.en; // Fallback to English
   const editorRef = useRef<HTMLDivElement>(null);
   const [editorIsEmpty, setEditorIsEmpty] = useState(true);
   const { theme } = useTheme();
-//   const { language: currentLanguage } = useSelector(
-//     (state: RootState) => state.language,
-//   );
-
-  // State to keep track of formatting
   const [formattingState, setFormattingState] = useState({
     bold: false,
     italic: false,
@@ -376,13 +488,13 @@ const TextEditor = ({
 
   return (
     <div className="mx-auto p-4">
-      <div className="flex bg-bgGray flex-wrap items-center gap-2 rounded-t-xl border border-borderPrimary p-2">
+      <div className="flex flex-wrap items-center gap-2 rounded-t-xl border border-borderPrimary bg-bgGray p-2">
         {/* Undo and Redo buttons */}
         <button
           type="button"
           onClick={undo}
           className={getButtonClassName(false)}
-          aria-label="Undo"
+          aria-label={t.undo}
         >
           <svg
             className="h-8 w-8"
@@ -401,7 +513,7 @@ const TextEditor = ({
           type="button"
           onClick={redo}
           className={getButtonClassName(false)}
-          aria-label="Redo"
+          aria-label={t.redo}
         >
           <svg
             className="h-8 w-8"
@@ -418,36 +530,27 @@ const TextEditor = ({
         </button>
         {/* Text format dropdown */}
         <select
-          onChange={e => {
+          onChange={(e) => {
             applyFormat("formatBlock", e.target.value);
           }}
-          className="bg-bgPrimary rounded p-2 outline-none"
-          aria-label="Text format"
+          className="rounded bg-bgPrimary p-2 outline-none"
+          aria-label={t.bold}
         >
-          <option value="<p>">
-              Paragraph
-            
-          </option>
-          <option value="<h1>">
-          Heading 1
-          </option>
-          <option value="<h2>">
-          Heading 2
-          </option>
-          <option value="<h3>">
-          Heading 3
-          </option>
+           <option value="<p>">{t.paragraph}</option>
+  <option value="<h1>">{t.heading1}</option>
+  <option value="<h2>">{t.heading2}</option>
+  <option value="<h3>">{t.heading3}</option>
         </select>
         <select
-          onChange={e => changeFontSize(e.target.value)}
-          className="bg-bgPrimary rounded p-2 outline-none"
+          onChange={(e) => changeFontSize(e.target.value)}
+          className="rounded bg-bgPrimary p-2 outline-none"
           aria-label="Font size"
           defaultValue="3"
         >
-          <option value="1">Small</option>
-          <option value="3">Normal</option>
-          <option value="5">Large</option>
-          <option value="7">Huge</option>
+           <option value="1">{t.small}</option>
+  <option value="3">{t.normal}</option>
+  <option value="5">{t.large}</option>
+  <option value="7">{t.huge}</option>
         </select>
         {/* Formatting buttons */}
         <button
@@ -610,13 +713,13 @@ const TextEditor = ({
         {/* Font Color */}
         <input
           type="color"
-          onChange={e => changeFontColor(e.target.value)}
+          onChange={(e) => changeFontColor(e.target.value)}
           aria-label="Font color"
         />
         {/* Background Color */}
         <input
           type="color"
-          onChange={e => changeBackgroundColor(e.target.value)}
+          onChange={(e) => changeBackgroundColor(e.target.value)}
           aria-label="Background color"
         />
       </div>
@@ -637,12 +740,12 @@ const TextEditor = ({
           suppressContentEditableWarning={true}
         ></div>
         {editorIsEmpty && (
-          <div className="pointer-events-none absolute left-0 top-0 p-4 text-gray-400">
-            {placeholder || "Start typing..."}
+          <div className="pointer-events-none absolute left-0 top-0 p-4 text-textSecondary">
+            {placeholder || t.placeholder}
           </div>
         )}
         <div className="mt-2 text-right">
-          {characterCount}/{maxCharacters}
+          {characterCount}/{maxCharacters} {t.characters}
         </div>
       </div>
     </div>
