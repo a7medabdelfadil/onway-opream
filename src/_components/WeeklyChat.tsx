@@ -172,7 +172,7 @@ const WeeklyChart = () => {
 
   return (
     <div
-      className="mx-auto p-2 rounded-xl w-full bg-bgPrimary"
+      className="mx-auto p-4 rounded-xl w-full bg-bgPrimary"
       dir={language === "ar" ? "rtl" : "ltr"}
     >
       <div className="mb-4 flex items-end gap-3">

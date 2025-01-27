@@ -26,10 +26,9 @@ html {
   -ms-touch-action: pan-x pan-y;
 }
 .light {
-  /* --primary: 62, 90, 240; #3e5af0 */
-  --primary: 52, 152, 219; /* #3498DB */
+  --primary: 0, 112, 255; /* #0070FF */
   --primary2: 0, 112, 255; /* #0070FF */
-  --primary-hover: 33, 102, 148; /* #2d85c0 */
+  --primary-hover: 13, 67, 175; /* #0d43af */
   --primary2-hover: 13, 67, 175; /* #0d43af */
   --navLinks: 84, 101, 111; /* #54656F */
   --bg-primary: 255, 255, 255; /* #ffffff */
@@ -38,7 +37,7 @@ html {
   --bg-fourth: #DFEBFF; /* #DFEBFF */
   --bg-input: 243, 244, 246;  /* #F3F4F6 */
   --comment: 241, 245, 249; /* #F1F5F9 */ 
-  --bg-gray: 224, 224, 224; /* #e0e0e0 */
+  --bg-gray: 217, 217, 217; /* #D9D9D9 */
   --text-primary: 20, 27, 52; /* #141b34 */
   --text-secondary: 147, 163, 171; /* #93A3AB */
   --text-muted: 108, 108, 108; /* #6c6c6c */
@@ -56,21 +55,22 @@ html {
   --thead: 218, 234, 251; /* #daeafb */
   --light-gray: 252, 252, 252; /* #FCFCFC */
   --black-or-white: 255, 255, 255; /* #ffffff */
+  --white-or-black: 0, 0, 0; /* #000000 */
   --chat: 62, 90, 240; /* #3E5AF0 */
 }
 
 .dark {
-  --primary: 52, 152, 219; /* #3498DB */
+  --primary: 0, 112, 255; /* #0070FF */
   --primary2: 0, 112, 255; /* #0070FF */
   --navLinks: 84, 101, 111; /* #54656F */
-  --primary-hover: 33, 102, 148; /* #2d85c0 */
+  --primary-hover: 13, 67, 175; /* #0d43af */
   --primary2-hover: 13, 67, 175; /* #0d43af */
   --navLinks: 84, 101, 111; /* #54656F */
   --bg-primary: 0, 0, 0; /* #000000 */
   --bg-secondary: 23, 28, 35; /* #171c23 */
   --bg-third: 7, 31, 58; /* #071f3a */
   --bg-fourth: #0d43af6c; /* #0d43af1e */
-  --bg-gray: 224, 224, 224; /* #e0e0e0 */
+  --bg-gray: 38, 38, 38; /* #262626 */
   --bg-input: 23, 28, 35; /* #171c23 */
   --text-primary: 253, 253, 255; /* #fdfdff */
   --text-muted: 108, 108, 108; /* #6c6c6c */
@@ -89,6 +89,7 @@ html {
   --thead: 7, 31, 58; /* #071f3a */
   --notification: 15, 15, 15; /* #0f0f0f */
   --black-or-white: 0, 0, 0; /* #000000 */
+  --white-or-black: 255, 255, 255; /* #ffffff */
   --chat: 62, 90, 240; /* #3E5AF0 */
 }
 

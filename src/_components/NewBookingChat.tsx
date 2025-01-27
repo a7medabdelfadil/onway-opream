@@ -107,7 +107,7 @@ const ChartComponent = () => {
   };
 
   return (
-    <div className="w-full p-2 rounded-xl mx-auto bg-bgPrimary">
+    <div className="w-full p-4 rounded-xl mx-auto bg-bgPrimary">
       <div className="flex justify-between">
         <div className="flex flex-col mb-4">
           <h2 className="text-lg font-bold text-textPrimary">

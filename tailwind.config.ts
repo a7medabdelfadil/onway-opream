@@ -49,6 +49,7 @@ export default {
         borderPrimary: "rgba(var(--border-primary))",
         borderSecondary: "rgba(var(--border-secondary))",
         blackOrWhite: "rgba(var(--black-or-white))",
+        whiteOrBlack: "rgba(var(--white-or-black))",
         thead: "rgba(var(--thead))",
         chat: "rgba(var(--chat))",
         lightGray: "rgba(var(--light-gray))",
