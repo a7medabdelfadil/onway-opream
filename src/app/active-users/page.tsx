@@ -273,7 +273,7 @@ function ActiveUsers() {
             <Text font={"semiBold"} size={"xl"} className="mb-4">
               {t.lastRegistrationRequest}
             </Text>
-            <div className="min-w-[900px]">
+            <div className="min-w-[1000px]">
               {/* Header */}
               <div className="grid grid-cols-6 gap-4 px-4 py-2 font-medium text-textSecondary">
                 <div className="text-start">{t.status}</div>
@@ -348,7 +348,9 @@ function ActiveUsers() {
 
                     {/* Request Date */}
                     <div className="text-center text-textSecondary">
-                      {row.email}
+                      {row.email.length > 18
+                        ? `${row.email.substring(0, 18)}...`
+                        : row.email}
                     </div>
 
                     {/* Images */}
@@ -400,7 +402,7 @@ function ActiveUsers() {
             <Text font={"semiBold"} size={"xl"} className="mb-4">
               {t.lastRegistrationRequest}
             </Text>
-            <div className="min-w-[900px]">
+            <div className="min-w-[1000px]">
               {/* Header */}
               <div className="grid grid-cols-6 gap-4 px-4 py-2 font-medium text-textSecondary">
                 <div className="text-start">{t.status}</div>
@@ -475,9 +477,10 @@ function ActiveUsers() {
 
                     {/* Request Date */}
                     <div className="text-center text-textSecondary">
-                      {row.email}
+                      {row.email.length > 18
+                        ? `${row.email.substring(0, 18)}...`
+                        : row.email}
                     </div>
-
                     {/* Images */}
 
                     {/* Address */}
