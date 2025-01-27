@@ -155,10 +155,10 @@ function Dashboard() {
         </Box>
       </div>
       <div className="mt-4 flex flex-wrap gap-4">
-        <div className="w-[calc(60%-8px)] sm:w-full md:w-[calc(50%-8px)] lg:w-[calc(60%-8px)]">
+        <div className="w-full md:w-[calc(50%-8px)] lg:w-[calc(60%-8px)]">
           <WeeklyChart />
         </div>
-        <div className="w-[calc(40%-8px)] sm:w-full md:w-[calc(50%-8px)] lg:w-[calc(40%-8px)]">
+        <div className="w-full md:w-[calc(50%-8px)] lg:w-[calc(40%-8px)]">
           <NewBookingChart />
         </div>
       </div>
