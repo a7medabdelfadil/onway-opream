@@ -7,7 +7,6 @@ import { useTheme } from "next-themes";
 import Spinner from "./Spinner";
 import { Switch } from "~/components/ui/switch";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-import Cookie from "js-cookie";
 import {
   useBooleanValue,
   useLanguageStore,
@@ -22,6 +21,7 @@ import { FiSettings } from "react-icons/fi";
 import { IoNotificationsOutline } from "react-icons/io5";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import LanguageSwitcher from "./LanguageSwitcher";
+import Cookies from "js-cookie";
 
 const translations = {
   en: {
@@ -236,7 +236,8 @@ const NavBar = () => {
   };
 
   const DeleteCookie = () => {
-    Cookie.remove("token");
+    Cookies.remove("accessToken");
+    Cookies.remove("refreshToken");
     useUserDataStore.getState().clearUserData();
   };
 
@@ -427,18 +428,18 @@ const NavBar = () => {
                     />
                   </Link>
 
-                  <div className="relative inline-flex w-[60px] sm:w-[225px] justify-end">
+                  <div className="relative inline-flex w-[60px] justify-end sm:w-[225px]">
                     <DropdownMenu.Root>
                       <DropdownMenu.Trigger asChild>
                         <button
                           onClick={toggleProfile}
                           id="dropdown-trigger"
                           type="button"
-                          className="outline-none focus:outline-none focus:ring-none disabled:pointer-events-none disabled:opacity-50"
+                          className="focus:ring-none outline-none focus:outline-none disabled:pointer-events-none disabled:opacity-50"
                         >
                           <div className="flex items-center gap-3 sm:justify-center">
                             <img
-                              className="h-12 w-12 rounded-full sm:rounded-lg ring-2 ring-bgSecondary"
+                              className="h-12 w-12 rounded-full ring-2 ring-bgSecondary sm:rounded-lg"
                               src="/images/profile.png"
                               alt="User Avatar"
                             />
